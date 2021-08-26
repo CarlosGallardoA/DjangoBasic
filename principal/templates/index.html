@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+   <h1>Lista de usuarios</h1> 
+   <table border="2">
+       <thead>
+           <tr>
+               <th>Nombre</th>
+               <th>Apellido</th>
+               <th>Correo</th>
+               <th>Acciones</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for persona in personas %} <!--object_list-->
+                <tr>
+                    <td>{{ persona.nombre }}</td>
+                    <td>{{ persona.apellido }}</td>
+                    <td>{{ persona.correo }}</td>
+                    <td>
+                        <a href="{% url 'editar_persona' persona.id %}">Editar</a>
+                        <a href="{% url 'eliminar_persona' persona.id %}">Eliminar</a>
+                    </td>
+                </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+   {% endblock %}
+</body>
+</html>
